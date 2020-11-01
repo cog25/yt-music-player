@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "description": "music player with youtube",
   "main": "index.html",
-  "scripts": {},
+  "scripts": {
+    "build": "npx webpack",
+    "update": "npm update --save/--save-dev"
+  },
   "author": "Marshall K",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "ts-loader": "^8.0.7",
+    "typescript": "^4.0.5",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  }
 }
