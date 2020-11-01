@@ -1,0 +1,9 @@
+{
+  "name": "yt-music-player",
+  "version": "1.0.0",
+  "description": "music player with youtube",
+  "main": "index.html",
+  "scripts": {},
+  "author": "Marshall K",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link async rel="stylesheet" href="./src/css/style.css" />
+    </head>
+    <body>
+        <div id="app">
+            <section class="video">
+                <div class="video__container playing">
+                    <div id="player"></div>
+                </div>
+                <div class="video__control">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 256 256"
+                        id="previous"
+                        class="video__control__button"
+                    >
+                        <polyline
+                            points="200 208 120 128 200 48"
+                            fill="none"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="24"
+                        />
+                        <polyline
+                            points="120 208 40 128 120 48"
+                            fill="none"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="24"
+                        />
+                    </svg>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 256 256"
+                        id="play"
+                        class="video__control__button"
+                    >
+                        <path
+                            d="M228.14833,121.17381,84.1717,33.18517A8,8,0,0,0,72,40.01136V215.98864a8,8,0,0,0,12.1717,6.82619l143.97663-87.98864A8,8,0,0,0,228.14833,121.17381Z"
+                            fill="none"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="24"
+                        />
+                    </svg>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 256 256"
+                        id="pause"
+                        class="video__control__button"
+                    >
+                        <rect
+                            x="152"
+                            y="40"
+                            width="64"
+                            height="176"
+                            rx="8"
+                            stroke-width="24"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            fill="none"
+                        />
+                        <rect
+                            x="40"
+                            y="40"
+                            width="64"
+                            height="176"
+                            rx="8"
+                            stroke-width="24"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            fill="none"
+                        />
+                    </svg>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 256 256"
+                        id="next"
+                        class="video__control__button"
+                    >
+                        <polyline
+                            points="56 48 136 128 56 208"
+                            fill="none"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="24"
+                        />
+                        <polyline
+                            points="136 48 216 128 136 208"
+                            fill="none"
+                            stroke="#000"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="24"
+                        />
+                    </svg>
+                </div>
+            </section>
+            <section class="list">
+                <form action="/">
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="이름을 입력해주세요"
+                        aria-placeholder="이름을 입력해주세요"
+                    />
+                    <input
+                        type="text"
+                        id="uri"
+                        placeholder="주소를 입력해주세요"
+                        aria-placeholder="주소를 입력해주세요"
+                    />
+                    <div
+                        role="button"
+                        type="submit"
+                        id="submit"
+                        aria-label="확인"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 256"
+                        >
+                            <line
+                                x1="40"
+                                y1="128"
+                                x2="216"
+                                y2="128"
+                                fill="none"
+                                stroke="#000"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="24"
+                            />
+                            <line
+                                x1="128"
+                                y1="40"
+                                x2="128"
+                                y2="216"
+                                fill="none"
+                                stroke="#000"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="24"
+                            />
+                        </svg>
+                    </div>
+                </form>
+                <ul id="playlist"></ul>
+            </section>
+        </div>
+        <script defer src="https://www.youtube.com/iframe_api"></script>
+        <script defer src="./src/js/app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+#app {
+    display: flex;
+}
+
+/* video */
+@keyframes spin {
+    from {
+        transform: rotate3d(0, 0, 1, 0deg);
+    }
+    to {
+        transform: rotate3d(0, 0, 1, 360deg);
+    }
+}
+
+.video__container {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.video__container.playing {
+    animation: spin 10s linear infinite;
+}
+
+.video__control {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.video__control__button {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+iframe {
+    display: block;
+}
+
+/* list */
