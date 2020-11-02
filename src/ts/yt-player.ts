@@ -7,14 +7,10 @@ declare global {
 export let player: YT.Player;
 
 export function loadApi() {
-    if (!window.YT) {
-        const script = document.createElement("script");
-        script.src = "https://www.youtube.com/iframe_api";
-        window.onYouTubeIframeAPIReady = initializePlayer;
-        document.body.append(script);
-    } else {
-        initializePlayer();
-    }
+    const script = document.createElement("script");
+    script.src = "https://www.youtube.com/iframe_api";
+    window.onYouTubeIframeAPIReady = initializePlayer;
+    document.body.append(script);
 }
 
 function initializePlayer() {
@@ -27,6 +23,8 @@ function initializePlayer() {
             onStateChange: onPlayerStateChange,
         },
     });
+
+    window.onYouTubeIframeAPIReady = null;
 }
 
 export function loadVideoById(id: string) {
