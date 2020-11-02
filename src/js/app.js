@@ -21,6 +21,10 @@ function onPlayerReady(event) {
     event.target.playVideo();
 }
 
+function loadVideoById(id) {
+    player.loadVideoById(id);
+}
+
 function onPlayerStateChange() {
     const contanier = document.getElementById("video-container");
     const pause = document.getElementById("pause");
@@ -28,13 +32,19 @@ function onPlayerStateChange() {
     const state = player.getPlayerState();
 
     if (state === 1) {
+        // playing
         contanier.classList.add("playing");
         pause.style.display = "inline";
         play.style.display = "none";
     } else {
-        contanier.classList.remove("playing");
-        pause.style.display = "none";
-        play.style.display = "inline";
+        if (state === 0) {
+            // ended
+            player.loadVideoById("D4_iIg-VQ6g");
+        } else {
+            contanier.classList.remove("playing");
+            pause.style.display = "none";
+            play.style.display = "inline";
+        }
     }
 }
 

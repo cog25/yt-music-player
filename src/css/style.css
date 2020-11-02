@@ -15,10 +15,12 @@
 .video__container {
     border-radius: 50%;
     overflow: hidden;
+    animation: spin 10s linear infinite;
+    animation-play-state: paused;
 }
 
 .video__container.playing {
-    animation: spin 10s linear infinite;
+    animation-play-state: running;
 }
 
 .video__control {
