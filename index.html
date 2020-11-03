@@ -117,12 +117,12 @@
                 </div>
             </section>
             <section class="list">
-                <form action="/">
+                <form id="song-form" action="/">
                     <input
                         type="text"
-                        id="name"
-                        placeholder="이름을 입력해주세요"
-                        aria-placeholder="이름을 입력해주세요"
+                        id="title"
+                        placeholder="제목을 입력해주세요"
+                        aria-placeholder="제목을 입력해주세요"
                         tabindex="2"
                     />
                     <input
@@ -163,6 +163,7 @@
                             />
                         </svg>
                     </div>
+                    <input type="submit" hidden aria-hidden="true" />
                 </form>
                 <ul id="playlist"></ul>
             </section>

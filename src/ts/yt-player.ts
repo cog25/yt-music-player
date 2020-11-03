@@ -24,6 +24,7 @@ function initializePlayer() {
         },
     });
 
+    handleButtons();
     window.onYouTubeIframeAPIReady = null;
 }
 
@@ -58,7 +59,7 @@ function onPlayerStateChange() {
     }
 }
 
-export function handleButtons() {
+function handleButtons() {
     document.getElementById("pause").addEventListener("click", () => {
         player.pauseVideo();
     });
