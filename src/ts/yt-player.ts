@@ -1,3 +1,5 @@
+import { db } from "./data";
+
 declare global {
     interface Window {
         onYouTubeIframeAPIReady: Function;
@@ -17,7 +19,7 @@ function initializePlayer() {
     player = new YT.Player("player", {
         width: "560",
         height: "560",
-        videoId: "D4_iIg-VQ6g",
+        videoId: db[0].id,
         events: {
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange,
@@ -50,7 +52,7 @@ function onPlayerStateChange() {
     } else {
         if (state === 0) {
             // ended
-            player.loadVideoById("D4_iIg-VQ6g");
+            player.loadVideoById(db[0].id);
         } else {
             contanier.classList.remove("playing");
             pause.style.display = "none";
