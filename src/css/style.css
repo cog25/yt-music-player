@@ -1,10 +1,38 @@
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
 #app {
     display: flex;
+    height: 100%;
+    padding: 10px;
+    max-width: 1200px;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+svg {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: none;
+    stroke: #f1f1f1;
+}
+
+@media screen and (min-width: 860px) {
+    #app {
+        flex-direction: row;
+    }
 }
 
 /* background image */
 html {
     background: #121212;
+    color: #f1f1f1;
 }
 
 html,
@@ -12,6 +40,7 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+    overflow-x: hidden;
 }
 
 #bg {
@@ -39,7 +68,15 @@ body {
     }
 }
 
+.video {
+    width: clamp(0px, 100%, 600px);
+}
+
 .video__container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
     border-radius: 50%;
     overflow: hidden;
     animation: spin 10s linear infinite;
@@ -48,6 +85,17 @@ body {
 
 .video__container.playing {
     animation-play-state: running;
+}
+
+.video__container > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .video__control {
@@ -60,8 +108,40 @@ body {
     height: 1.5rem;
 }
 
-iframe {
-    display: block;
+/* list */
+.list {
+    height: clamp(0px, 100%, calc(620px + 1.5rem));
+    margin-top: 50px;
 }
 
-/* list */
+.list__form {
+    display: flex;
+}
+
+.list__form > input {
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    background: 0;
+    outline: 0;
+    border: 0;
+    padding: 0 5px;
+    color: #f1f1f1;
+}
+
+.list__form > input[hidden] {
+    display: none;
+}
+
+.list__form > div[type="submit"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 860px) {
+    .list {
+        margin-top: 0;
+        margin-left: auto;
+    }
+}
