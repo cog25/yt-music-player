@@ -15,18 +15,22 @@
     margin: 0 auto;
 }
 
-svg {
+@media screen and (min-width: 860px) {
+    #app {
+        flex-direction: row;
+    }
+}
+
+/* svg icons */
+.icon {
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
     fill: none;
     stroke: #f1f1f1;
-}
-
-@media screen and (min-width: 860px) {
-    #app {
-        flex-direction: row;
-    }
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 24;
 }
 
 /* background image */
