@@ -119,6 +119,7 @@ body {
 }
 
 .list__form > input {
+    position: relative;
     display: block;
     width: 100%;
     height: 1.5rem;
@@ -127,6 +128,15 @@ body {
     border: 0;
     padding: 0 5px;
     color: #f1f1f1;
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.list__form > input::placeholder {
+    color: #f1f1f1;
+}
+
+.list__form > input:focus {
+    box-shadow: inset 0 -2px #f1f1f1;
 }
 
 .list__form > input[hidden] {
