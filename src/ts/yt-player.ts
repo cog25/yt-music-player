@@ -1,4 +1,5 @@
 import { db } from "./data";
+import { loadThumbnailById } from "./yt-functions";
 
 declare global {
     interface Window {
@@ -32,6 +33,7 @@ function initializePlayer() {
 
 export function loadVideoById(id: string) {
     player.loadVideoById(id);
+    backgroundImage(id);
 }
 
 function onPlayerReady(event: YT.PlayerEvent) {
@@ -69,4 +71,13 @@ function handleButtons() {
     document.getElementById("play").addEventListener("click", () => {
         player.playVideo();
     });
+}
+
+export function backgroundImage(videoId: string) {
+    const imageLayer = document.createElement("div");
+
+    imageLayer.id = "bg";
+    imageLayer.style.backgroundImage = `url(${loadThumbnailById(videoId)})`;
+
+    document.body.append(imageLayer);
 }
