@@ -1,4 +1,4 @@
-import { player, loadApi, loadVideoById, backgroundImage } from "./yt-player";
+import { player, loadApi, loadVideo, backgroundImage } from "./yt-player";
 import { db, loadDB } from "./data";
 import { renderList, handleInput } from "./list";
 
@@ -7,7 +7,6 @@ function init() {
     loadDB();
     renderList();
     handleInput();
-    backgroundImage(db[0].id);
 }
 
 init();

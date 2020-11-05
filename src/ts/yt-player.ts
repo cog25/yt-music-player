@@ -17,10 +17,11 @@ export function loadApi() {
 }
 
 function initializePlayer() {
+    const firstSong = db[0];
     player = new YT.Player("player", {
         width: "560",
         height: "560",
-        videoId: db[0].id,
+        videoId: firstSong.id,
         events: {
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange,
@@ -28,12 +29,20 @@ function initializePlayer() {
     });
 
     handleButtons();
+
+    displayVideoInfo(firstSong.title, firstSong.id);
+
     window.onYouTubeIframeAPIReady = null;
 }
 
-export function loadVideoById(id: string) {
+export function loadVideo(title: string, id: string) {
     player.loadVideoById(id);
+    displayVideoInfo(title, id);
+}
+
+function displayVideoInfo(title: string, id: string) {
     backgroundImage(id);
+    document.title = `🎵 Playing - ${title}`;
 }
 
 function onPlayerReady(event: YT.PlayerEvent) {

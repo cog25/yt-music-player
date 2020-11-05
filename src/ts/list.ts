@@ -1,5 +1,5 @@
 import { db, saveDB } from "./data";
-import { loadVideoById } from "./yt-player";
+import { loadVideo } from "./yt-player";
 import { getIdFromUri } from "./yt-functions";
 
 const container = document.getElementById("playlist");
@@ -11,7 +11,7 @@ function createItem(title: string, id: string): HTMLLIElement {
 
     nameElem.innerText = title;
     nameElem.addEventListener("click", () => {
-        loadVideoById(id);
+        loadVideo(title, id);
     });
 
     removeButton.innerText = "❌";
