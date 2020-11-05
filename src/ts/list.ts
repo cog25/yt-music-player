@@ -15,12 +15,16 @@ function createItem(title: string, id: string): HTMLLIElement {
     });
 
     removeButton.innerText = "❌";
-    removeButton.addEventListener("click", removeItem, { capture: true });
+    removeButton.addEventListener(
+        "click",
+        (event) => {
+            removeItem(event, id);
+        },
+        { capture: true }
+    );
 
     item.append(nameElem);
     item.append(removeButton);
-
-    item.dataset.id = id;
 
     return item;
 }
@@ -45,9 +49,9 @@ function addItem(title: string, uri: string) {
     saveDB();
 }
 
-function removeItem(event: MouseEvent) {
+function removeItem(event: MouseEvent, id: string) {
     const target = <HTMLLIElement>(<HTMLButtonElement>event.target).parentNode;
-    const targetIndex = db.findIndex((item) => item.id === target.dataset.id);
+    const targetIndex = db.findIndex((item) => item.id === id);
 
     db.splice(targetIndex, 1);
 
