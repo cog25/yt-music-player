@@ -83,10 +83,14 @@ function handleButtons() {
 }
 
 export function backgroundImage(videoId: string) {
-    const imageLayer = document.createElement("div");
+    let imageLayer = document.getElementById("bg");
 
-    imageLayer.id = "bg";
+    if (!imageLayer) {
+        imageLayer = document.createElement("div");
+
+        imageLayer.id = "bg";
+        document.body.append(imageLayer);
+    }
+
     imageLayer.style.backgroundImage = `url(${loadThumbnailById(videoId)})`;
-
-    document.body.append(imageLayer);
 }
