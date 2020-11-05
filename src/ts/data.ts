@@ -1,8 +1,8 @@
 // will update to IndexedDB
 export let db: any[];
 
-export function saveDB() {
-    localStorage.setItem("yt-music", JSON.stringify(db));
+export function saveDB(array: any[]) {
+    localStorage.setItem("yt-music", JSON.stringify(array));
 }
 
 export function loadDB() {

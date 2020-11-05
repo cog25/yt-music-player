@@ -3,6 +3,7 @@ import { loadVideo } from "./yt-player";
 import { getIdFromUri } from "./yt-functions";
 
 const container = document.getElementById("playlist");
+export let queue: any[] = [];
 
 function createItem(title: string, id: string): HTMLLIElement {
     const item = document.createElement("li");
@@ -11,7 +12,7 @@ function createItem(title: string, id: string): HTMLLIElement {
 
     nameElem.innerText = title;
     nameElem.addEventListener("click", () => {
-        loadVideo(title, id);
+        loadVideo({ title, id });
     });
 
     removeButton.innerText = "❌";
@@ -29,8 +30,10 @@ function createItem(title: string, id: string): HTMLLIElement {
     return item;
 }
 
-export function renderList() {
-    db.forEach((item) => {
+export function initializeList() {
+    queue = [...db];
+
+    queue.forEach((item) => {
         container.append(createItem(item.title, item.id));
     });
 }
@@ -39,25 +42,25 @@ function addItem(title: string, uri: string) {
     const id = getIdFromUri(uri);
     const newItem = createItem(title, id);
 
-    db.push({
+    queue.push({
         title,
         id,
     });
 
     container.append(newItem);
 
-    saveDB();
+    saveDB(queue);
 }
 
 function removeItem(event: MouseEvent, id: string) {
     const target = <HTMLLIElement>(<HTMLButtonElement>event.target).parentNode;
-    const targetIndex = db.findIndex((item) => item.id === id);
+    const targetIndex = queue.findIndex((item) => item.id === id);
 
-    db.splice(targetIndex, 1);
+    queue.splice(targetIndex, 1);
 
     target.remove();
 
-    saveDB();
+    saveDB(queue);
 }
 
 function handleSubmit() {
@@ -86,4 +89,24 @@ export function handleInput() {
         handleSubmit();
     });
     submit.addEventListener("click", handleSubmit);
+}
+
+export function updateQuene(method: "next" | "prev" | "shuffle") {
+    if (method === "next") {
+        queue.push(queue[0]);
+        queue.shift();
+    } else if (method === "prev") {
+        queue.unshift(queue[queue.length - 1]);
+        queue.pop();
+    } else if (method === "shuffle") {
+        const firstItem = queue[0];
+        queue.shift();
+
+        for (let i = queue.length; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [queue[i], queue[j]] = [queue[j], queue[i]];
+        }
+        queue.unshift(firstItem);
+    }
 }

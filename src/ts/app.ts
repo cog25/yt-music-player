@@ -1,11 +1,11 @@
 import { player, loadApi, loadVideo, backgroundImage } from "./yt-player";
 import { db, loadDB } from "./data";
-import { renderList, handleInput } from "./list";
+import { initializeList, handleInput } from "./list";
 
 function init() {
     loadApi();
     loadDB();
-    renderList();
+    initializeList();
     handleInput();
 }
 

@@ -1,4 +1,4 @@
-import { db } from "./data";
+import { queue, updateQuene } from "./list";
 import { loadThumbnailById } from "./yt-functions";
 
 declare global {
@@ -17,7 +17,7 @@ export function loadApi() {
 }
 
 function initializePlayer() {
-    const firstSong = db[0];
+    const firstSong = queue[0];
     player = new YT.Player("player", {
         width: "560",
         height: "560",
@@ -35,7 +35,7 @@ function initializePlayer() {
     window.onYouTubeIframeAPIReady = null;
 }
 
-export function loadVideo(title: string, id: string) {
+export function loadVideo({ title, id }: { title: string; id: string }) {
     player.loadVideoById(id);
     displayVideoInfo(title, id);
 }
@@ -63,7 +63,8 @@ function onPlayerStateChange() {
     } else {
         if (state === 0) {
             // ended
-            player.loadVideoById(db[0].id);
+            updateQuene("next");
+            loadVideo(queue[0]);
         } else {
             contanier.classList.remove("playing");
             pause.style.display = "none";
@@ -79,6 +80,16 @@ function handleButtons() {
 
     document.getElementById("play").addEventListener("click", () => {
         player.playVideo();
+    });
+
+    document.getElementById("previous").addEventListener("click", () => {
+        updateQuene("prev");
+        loadVideo(queue[0]);
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+        updateQuene("next");
+        loadVideo(queue[0]);
     });
 }
 
