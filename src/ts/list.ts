@@ -1,4 +1,4 @@
-import { db, saveDB } from "./data";
+import { db, addItemFromDB, removeItemFromDB } from "./data";
 import { loadVideo } from "./yt-player";
 import { getIdFromUri } from "./yt-functions";
 
@@ -50,7 +50,10 @@ function addItem(title: string, uri: string) {
 
     container.append(newItem);
 
-    saveDB(queue);
+    addItemFromDB({
+        title,
+        id,
+    });
 }
 
 function removeItem(event: MouseEvent, id: string) {
@@ -61,7 +64,7 @@ function removeItem(event: MouseEvent, id: string) {
 
     target.remove();
 
-    saveDB(queue);
+    removeItemFromDB(id);
 }
 
 function handleSubmit() {

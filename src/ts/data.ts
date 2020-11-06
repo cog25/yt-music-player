@@ -1,8 +1,8 @@
 // will update to IndexedDB
 export let db: any[];
 
-export function saveDB(array: any[]) {
-    localStorage.setItem("yt-music", JSON.stringify(array));
+function saveDB() {
+    localStorage.setItem("yt-music", JSON.stringify(db));
 }
 
 export function loadDB() {
@@ -32,4 +32,21 @@ function parseDB(storage: any) {
             },
         ];
     }
+}
+
+export function addItemFromDB({ title, id }: { title: string; id: string }) {
+    db.push({
+        title,
+        id,
+    });
+
+    saveDB();
+}
+
+export function removeItemFromDB(id: string) {
+    const targetIndex = db.findIndex((item) => item.id === id);
+
+    db.splice(targetIndex, 1);
+
+    saveDB();
 }
