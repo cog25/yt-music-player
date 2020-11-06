@@ -12,6 +12,7 @@ function createItem(title: string, id: string): HTMLLIElement {
 
     nameElem.innerText = title;
     nameElem.addEventListener("click", () => {
+        reArrangeQueue(id);
         loadVideo({ title, id });
     });
 
@@ -91,7 +92,7 @@ export function handleInput() {
     submit.addEventListener("click", handleSubmit);
 }
 
-export function updateQuene(method: "next" | "prev" | "shuffle") {
+export function updateQueue(method: "next" | "prev" | "shuffle") {
     if (method === "next") {
         queue.push(queue[0]);
         queue.shift();
@@ -110,4 +111,16 @@ export function updateQuene(method: "next" | "prev" | "shuffle") {
         }
         queue.unshift(firstItem);
     }
+}
+
+function reArrangeQueue(id: string) {
+    const selectedItemIndex = queue.findIndex((item) => item.id === id);
+    const smallerIndex = queue.filter((item, index) => {
+        return index < selectedItemIndex;
+    });
+    const largerIndex = queue.filter((item, index) => {
+        return index >= selectedItemIndex;
+    });
+
+    queue = largerIndex.concat(smallerIndex);
 }

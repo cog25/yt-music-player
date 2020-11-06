@@ -1,4 +1,4 @@
-import { queue, updateQuene } from "./list";
+import { queue, updateQueue } from "./list";
 import { loadThumbnailById } from "./yt-functions";
 
 declare global {
@@ -102,7 +102,7 @@ function onPlayerStateChange() {
     } else {
         if (state === 0) {
             // ended
-            updateQuene("next");
+            updateQueue("next");
             loadVideo(queue[0]);
         } else {
             contanier.classList.remove("playing");
@@ -122,12 +122,12 @@ function handleButtons() {
     });
 
     document.getElementById("previous").addEventListener("click", () => {
-        updateQuene("prev");
+        updateQueue("prev");
         loadVideo(queue[0]);
     });
 
     document.getElementById("next").addEventListener("click", () => {
-        updateQuene("next");
+        updateQueue("next");
         loadVideo(queue[0]);
     });
 
