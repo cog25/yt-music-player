@@ -8,6 +8,8 @@ declare global {
 }
 
 export let player: YT.Player;
+let duration = 0;
+let handlingDuration = false;
 
 export function loadApi() {
     const script = document.createElement("script");
@@ -30,23 +32,60 @@ function initializePlayer() {
 
     handleButtons();
 
-    displayVideoInfo(firstSong.title, firstSong.id);
-
     window.onYouTubeIframeAPIReady = null;
 }
 
 export function loadVideo({ title, id }: { title: string; id: string }) {
+    function onVideoLoaded() {
+        if (player.getPlayerState() === 1) {
+            displayVideoInfo(title, id);
+            player.removeEventListener("onStateChange", onVideoLoaded);
+        }
+    }
+
+    duration = 0;
     player.loadVideoById(id);
-    displayVideoInfo(title, id);
+    player.addEventListener("onStateChange", onVideoLoaded);
+}
+
+function renderDuration() {
+    if (!duration || handlingDuration) return;
+    const durationElem = <HTMLInputElement>document.getElementById("duration");
+
+    durationElem.value = `${player.getCurrentTime()}`;
+    requestAnimationFrame(renderDuration);
+}
+
+function changeDuration() {
+    handlingDuration = true;
+}
+
+function changeDurationEnd() {
+    if (!duration) return;
+
+    handlingDuration = false;
+
+    const durationElem = <HTMLInputElement>document.getElementById("duration");
+
+    player.seekTo(+durationElem.value, true);
+    player.playVideo();
+    renderDuration();
 }
 
 function displayVideoInfo(title: string, id: string) {
+    const durationElem = <HTMLInputElement>document.getElementById("duration");
+    duration = player.getDuration();
+    durationElem.max = `${duration}`;
+    renderDuration();
     backgroundImage(id);
     document.title = `🎵 Playing - ${title}`;
 }
 
 function onPlayerReady(event: YT.PlayerEvent) {
+    const firstSong = queue[0];
+
     event.target.playVideo();
+    displayVideoInfo(firstSong.title, firstSong.id);
 }
 
 function onPlayerStateChange() {
@@ -91,6 +130,22 @@ function handleButtons() {
         updateQuene("next");
         loadVideo(queue[0]);
     });
+
+    document
+        .getElementById("duration")
+        .addEventListener("mousedown", changeDuration, { passive: true });
+
+    document
+        .getElementById("duration")
+        .addEventListener("touchStart", changeDuration, { passive: true });
+
+    document
+        .getElementById("duration")
+        .addEventListener("mouseup", changeDurationEnd, { passive: true });
+
+    document
+        .getElementById("duration")
+        .addEventListener("touchEnd", changeDurationEnd, { passive: true });
 }
 
 export function backgroundImage(videoId: string) {

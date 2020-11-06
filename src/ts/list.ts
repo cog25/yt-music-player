@@ -99,6 +99,7 @@ export function updateQuene(method: "next" | "prev" | "shuffle") {
         queue.unshift(queue[queue.length - 1]);
         queue.pop();
     } else if (method === "shuffle") {
+        if (queue.length < 3) return;
         const firstItem = queue[0];
         queue.shift();
 
