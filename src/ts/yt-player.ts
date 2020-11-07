@@ -1,5 +1,5 @@
 import { queue, updateQueue } from "./list";
-import { loadThumbnailById } from "./yt-functions";
+import { loadThumbnailById, initializeTmpPlayer } from "./yt-functions";
 
 declare global {
     interface Window {
@@ -31,7 +31,7 @@ function initializePlayer() {
     });
 
     handleButtons();
-
+    initializeTmpPlayer();
     window.onYouTubeIframeAPIReady = null;
 }
 

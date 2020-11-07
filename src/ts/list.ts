@@ -1,6 +1,6 @@
 import { db, addItemFromDB, removeItemFromDB } from "./data";
 import { loadVideo } from "./yt-player";
-import { getIdFromUri } from "./yt-functions";
+import { getIdFromUri, getNameByUri } from "./yt-functions";
 
 const container = document.getElementById("playlist");
 export let queue: any[] = [];
@@ -67,20 +67,16 @@ function removeItem(event: MouseEvent, id: string) {
     removeItemFromDB(id);
 }
 
-function handleSubmit() {
-    const title = <HTMLInputElement>document.getElementById("title");
+async function handleSubmit() {
     const uri = <HTMLInputElement>document.getElementById("uri");
 
     if (!uri.value) {
         return;
     }
 
-    if (!title) {
-        title.value = uri.value;
-    }
+    const title = await getNameByUri(`${uri.value}`);
 
-    addItem(title.value, uri.value);
-    title.value = "";
+    addItem(title, uri.value);
     uri.value = "";
 }
 
