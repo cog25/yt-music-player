@@ -1,8 +1,29 @@
+@font-face {
+    font-family: "InfinitySans";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "InfinitySans";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff")
+        format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 *,
 ::before,
 ::after {
     box-sizing: border-box;
+    font-family: inherit;
     -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
@@ -37,6 +58,7 @@
 html {
     background: #121212;
     color: #f1f1f1;
+    font-family: "InfinitySans";
 }
 
 html,
@@ -101,6 +123,13 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none;
+}
+
+.video__title {
+    margin: 20px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
 }
 
 .video__control {

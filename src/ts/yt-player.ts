@@ -79,6 +79,7 @@ function displayVideoInfo(title: string, id: string) {
     renderDuration();
     backgroundImage(id);
     document.title = `🎵 Playing - ${title}`;
+    document.getElementById("title").innerText = title;
 }
 
 function onPlayerReady(event: YT.PlayerEvent) {
