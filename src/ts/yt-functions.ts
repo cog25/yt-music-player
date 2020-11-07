@@ -5,6 +5,8 @@ export function initializeTmpPlayer() {
         width: "10",
         height: "10",
     });
+
+    tmpPlayer.mute();
 }
 
 export async function getNameByUri(uri: string) {
