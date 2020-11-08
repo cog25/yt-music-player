@@ -183,6 +183,37 @@ body {
     align-items: center;
 }
 
+.list__music {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    list-style: none;
+}
+
+.list__music__item {
+    display: flex;
+    line-height: 1.5rem;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.list__music__item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.list__music__item > button {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin-left: auto;
+    border: 0;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 860px) {
     .list {
         margin-top: 0;

@@ -16,7 +16,7 @@ function createItem(title: string, id: string): HTMLLIElement {
         loadVideo({ title, id });
     });
 
-    removeButton.innerText = "❌";
+    removeButton.innerText = "✘";
     removeButton.addEventListener(
         "click",
         (event) => {
@@ -27,6 +27,8 @@ function createItem(title: string, id: string): HTMLLIElement {
 
     item.append(nameElem);
     item.append(removeButton);
+
+    item.classList.add("list__music__item");
 
     return item;
 }
