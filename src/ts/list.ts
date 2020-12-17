@@ -4,6 +4,44 @@ import { getIdFromUri, getNameByUri } from "./yt-functions";
 
 const container = document.getElementById("playlist");
 export let queue: any[] = [];
+const minusSvg = createMinusSVG();
+
+function createMinusSVG(): SVGElement {
+    const minusSvg = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+    );
+    const circle = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+    );
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+    minusSvg.setAttributeNS(null, "viewBox", "0 0 256 256");
+
+    circle.setAttributeNS(null, "cx", "128");
+    circle.setAttributeNS(null, "cy", "128");
+    circle.setAttributeNS(null, "r", "96");
+    circle.setAttributeNS(null, "fill", "none");
+    circle.setAttributeNS(null, "stroke-linecap", "round");
+    circle.setAttributeNS(null, "stroke-linejoin", "round");
+    circle.setAttributeNS(null, "stroke-width", "24");
+
+    line.setAttributeNS(null, "x1", "88");
+    line.setAttributeNS(null, "y1", "128");
+    line.setAttributeNS(null, "x2", "168");
+    line.setAttributeNS(null, "y2", "128");
+    line.setAttributeNS(null, "fill", "none");
+    line.setAttributeNS(null, "stroke-linecap", "round");
+    line.setAttributeNS(null, "stroke-linejoin", "round");
+    line.setAttributeNS(null, "stroke-width", "24");
+
+    minusSvg.append(circle);
+    minusSvg.append(line);
+    minusSvg.classList.add("icon");
+
+    return minusSvg;
+}
 
 function createItem(title: string, id: string): HTMLLIElement {
     const item = document.createElement("li");
@@ -16,7 +54,7 @@ function createItem(title: string, id: string): HTMLLIElement {
         loadVideo({ title, id });
     });
 
-    removeButton.innerText = "❌";
+    removeButton.append(minusSvg.cloneNode(true));
     removeButton.addEventListener(
         "click",
         (event) => {
@@ -24,6 +62,7 @@ function createItem(title: string, id: string): HTMLLIElement {
         },
         { capture: true }
     );
+    removeButton.setAttribute("aria-label", "삭제");
 
     item.append(nameElem);
     item.append(removeButton);
