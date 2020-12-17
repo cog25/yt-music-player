@@ -67,6 +67,8 @@ function createItem(title: string, id: string): HTMLLIElement {
     item.append(nameElem);
     item.append(removeButton);
 
+    item.classList.add("list__music__item");
+
     return item;
 }
 

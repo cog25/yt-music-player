@@ -90,14 +90,14 @@ function onPlayerReady(event: YT.PlayerEvent) {
 }
 
 function onPlayerStateChange() {
-    const contanier = document.getElementById("video-container");
+    const container = document.getElementById("video-container");
     const pause = document.getElementById("pause");
     const play = document.getElementById("play");
     const state = player.getPlayerState();
 
     if (state === 1) {
         // playing
-        contanier.classList.add("playing");
+        container.classList.add("playing");
         pause.style.display = "inline";
         play.style.display = "none";
     } else {
@@ -106,7 +106,7 @@ function onPlayerStateChange() {
             updateQueue("next");
             loadVideo(queue[0]);
         } else {
-            contanier.classList.remove("playing");
+            container.classList.remove("playing");
             pause.style.display = "none";
             play.style.display = "inline";
         }
