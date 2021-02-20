@@ -24,11 +24,16 @@ function initializePlayer() {
         width: "560",
         height: "560",
         videoId: firstSong.id,
+        playerVars: {
+            rel: 0,
+            autoplay: 1, 
+        },
         events: {
             onReady: onPlayerReady,
             onStateChange: onPlayerStateChange,
         },
     });
+
 
     handleButtons();
     initializeTmpPlayer();
