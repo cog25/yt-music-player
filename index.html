@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>YT Music Player</title>
-        <link async rel="stylesheet" href="./style.css" />
+        <link async rel="stylesheet" href="./src/css/style.css" />
     </head>
     <body>
         <main id="app">
@@ -12,6 +12,7 @@
                 <div id="video-container" class="video__container">
                     <div id="player"></div>
                 </div>
+                <h1 id="title" class="video__title">YT Music Player</h1>
                 <div class="video__control">
                     <div class="video__control__time">
                         <input
@@ -80,6 +81,7 @@
                         id="uri"
                         placeholder="주소를 입력해주세요"
                         aria-placeholder="주소를 입력해주세요"
+                        autocomplete="off"
                         tabindex="2"
                     />
                     <div
@@ -97,7 +99,19 @@
                 </form>
                 <ul id="playlist"></ul>
             </section>
+            <button id="toggleList" class="list__toggle">
+                <svg class="icon" viewBox="0 0 256 256">
+                    <polyline
+                        points="160 208 80 128 160 48"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="24"
+                    />
+                </svg>
+            </button>
         </main>
-        <script defer src="./app.js"></script>
+        <div id="tmpPlayer"></div>
+        <script defer src="./dist/app.js"></script>
     </body>
 </html>
